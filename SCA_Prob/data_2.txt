@@ -1,0 +1,13 @@
+ItemID, Vendor, Geographic Location, CFG1, CFG2, CFG3, CFG4
+ABX, 1, US, 1, 1, 1, 0
+ABN, 1, US, 1, 1, 1, 0
+GHY, 2, Mexico, 1, 1, 2, 1
+KIU, 3, Mexico, 1, 0, 1, 0
+PFR, 4, US, 1, 0, 1, 0
+JKI1, 5, Mexico, 0, 3, 0, 0
+JKI2, 5, Mexico, 3, 0, 0, 0
+JKI3, 5, Mexico, 2, 0, 3, 2
+CFG1, 6, US, 1, 0, 0, 0
+CFG2, 7, US, 0, 1, 0, 0
+CFG3, 8, US, 0, 0, 1, 0
+CFG4, 9, US, 0, 0, 0, 1
