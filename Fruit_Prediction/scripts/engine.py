@@ -55,12 +55,12 @@ partial_train_ds, valid_ds = random_split(train_data, [train_size, valid_size])
 
 
 # replace XX and YY with batch_size and number of workers, respectively
-train_loader = DataLoader(partial_train_ds, batch_size=5, shuffle=True)
-valid_loader = DataLoader(valid_ds, batch_size=5, shuffle=True)
+train_loader = DataLoader(partial_train_ds, batch_size=128, shuffle=True, num_workers=8)
+valid_loader = DataLoader(valid_ds, batch_size=128, shuffle=True, num_workers=8)
 # test_loader = DataLoader(test_data, batch_size=64, num_workers=8)
 
 
-n_epochs = 1 # this is a hyperparameter you'll need to define
+n_epochs = 20 # this is a hyperparameter you'll need to define
 k = []
 for epoch in (range(n_epochs)):
     ##################
@@ -110,16 +110,13 @@ for epoch in (range(n_epochs)):
     with torch.no_grad():
         for data in tqdm(valid_loader):
             # forward pass
-            data, target = data
+            feature, target = data
             feature = feature.view(-1, 3, 224, 224).to(device)
             target = Variable(torch.tensor(target, dtype=torch.long)).to(device)
             output = model(feature)
             
             # validation batch loss
             loss = criterion(output, target) 
-
-            # output = torch.softmax(output)
-            # print(predicted, target)
             predicted = torch.argmax(output,1)
             total_val += target.size(0)
             correct_val += (predicted == target).sum().item()
@@ -134,3 +131,4 @@ for epoch in (range(n_epochs)):
     print(f'Epoch: {epoch+1}/{n_epochs}.. Training loss: {train_loss}.. Validation Loss: {valid_loss}')
     print(f'Training accuracy: {100 * correct_train / total_train}, Validation accuracy: {100 * correct_val / total_val}')
 
+torch.save(model.state_dict(), 'py-model.model')

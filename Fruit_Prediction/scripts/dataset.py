@@ -42,7 +42,7 @@ class YourDataset(Dataset):
         return X, y
 
 # if __name__ == '__main__':
-#     dataset = YourDataset('data/Training/')
+#     dataset = YourDataset('../data/Training/')
 #     print(len(dataset))
 #     print(dataset[4200])
 
